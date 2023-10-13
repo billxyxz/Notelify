@@ -1,4 +1,4 @@
-import { addDoc, collection, deleteDoc, doc, updateDoc } from "firebase/firestore";
+import { addDoc, collection, deleteDoc, doc, updateDoc, } from "firebase/firestore";
 import { createContext, 
     useContext, 
     useEffect, 
@@ -6,7 +6,6 @@ import { createContext,
 } from "react";
 import { auth, db } from "../firebase";
 import { onAuthStateChanged, signOut } from "firebase/auth";
-import { Navigate } from "react-router-dom";
 
 
 const NoteContext = createContext();
@@ -18,7 +17,8 @@ export const useNoteContext = () => {
 export const NoteProvider = ({children}) => {
     const [noteTexts, setNoteTexts] = useState({
         title: "",
-        body: ""
+        body: "",
+        favorite: false
     });
     const [showNoteEditor, setShowNoteEditor] = useState(false);
     const [noteId, setNoteId] = useState(null);
@@ -80,6 +80,15 @@ export const NoteProvider = ({children}) => {
         }).catch(error => console.log(error.message));
     }
 
+    //adding note to favorite
+    const addToFavorite = async (id) => {
+        const noteToAdd = doc(db, "notes", id);
+        await updateDoc(noteToAdd, {favorite: true})
+        .then(() => {
+            alert("Note added to favorite!");
+        }).catch(error => console.log(err.message));
+    }
+
     //deleting note
     const  deleteNote = async (id) => {
         const noteToDelete = doc(db, "notes", id)
@@ -110,6 +119,7 @@ export const NoteProvider = ({children}) => {
             openNewNoteEditor,
             addNewNote,
             updateNote,
+            addToFavorite,
             deleteNote,
             handleTextChange,
             logOut

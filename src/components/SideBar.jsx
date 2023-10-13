@@ -35,13 +35,14 @@ const SideBar = () => {
         className={`w-full text-left px-4 py-2 flex items-center gap-3 border border-gray-400 rounded-md ${darkMode ? "text-[#E4F1FF]" : "bg-[#E4F1FF]"}`}
         ><FontAwesomeIcon icon={faBook} /><span>All Notes</span></button>
         <button 
+        onClick={() => navigate("favorites")}
         className={`w-full text-left px-4 py-2 flex items-center gap-3 border border-gray-400 rounded-md ${darkMode ? "text-[#E4F1FF]" : "bg-[#E4F1FF]"}`}
         ><FontAwesomeIcon icon={faHeart} /><span>Favorites</span></button>
 
       {/**Logout button*/}
       <button 
       onClick={handleLogout}
-      className="flex items-center font-medium gap-2 mt-auto text-[#D80032] hover:text-[#D80032]/[0.8]"
+      className="flex items-center font-medium gap-2 mt-auto text-[#FF6969]/[0.7]"
       >
         <FontAwesomeIcon 
         icon={faArrowRightFromBracket}

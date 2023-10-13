@@ -13,6 +13,7 @@ import { ThemeProvider } from "./Context/themeContext"
 import FaqPage from "./Pages/FaqPage"
 import NotesBoard from "./components/NotesBoard"
 import { NoteProvider } from "./Context/noteContext"
+import FavNotes from "./components/FavNotes"
 
 
 const routes = createBrowserRouter(createRoutesFromElements(
@@ -30,6 +31,7 @@ const routes = createBrowserRouter(createRoutesFromElements(
     index 
     element={<NotesBoard />} 
     />
+    <Route path="favorites" element={<FavNotes />} />
   </Route>
   </>
 ))
