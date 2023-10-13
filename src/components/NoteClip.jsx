@@ -2,14 +2,24 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useThemeContext } from "../Context/themeContext"
 import { faPencil, faHeart as faSolidHeart, } from "@fortawesome/free-solid-svg-icons";
 import { useNoteContext } from "../Context/noteContext";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 
 const NoteClip = ({note}) => {
     const {darkMode} = useThemeContext();
-    const { openCurrentNoteEditor, addToFavorite } = useNoteContext();
+    const { openCurrentNoteEditor, addToFavorite, removeFromFavorite } = useNoteContext();
     const [noteId] = useState(note.id)
-    const [isFavorite] = useState(note.favorite)
+    const [isFavorite, setIsFavorite] = useState(note.favorite)
+
+    function removeFromFav(){
+      setIsFavorite(false);
+      removeFromFavorite(noteId);
+    }
+
+    function addToFav(){
+      setIsFavorite(true);
+      addToFavorite(noteId);
+    }
 
   return (
     <article
@@ -21,27 +31,30 @@ const NoteClip = ({note}) => {
           <span>Open</span>
           <FontAwesomeIcon 
           icon={faPencil} 
-          className=" w-5 h-5 text-dark/[0.6] group-hover:text-dark transition-all  ease-linear"
+          className=" w-5 h-5 text-dark/[0.8] group-hover:text-dark transition-all  ease-linear"
         />
         </button>
       </div>
       <h4 className=" text-lg font-medium mb-1">{note.title}</h4>
       <p className=" line-clamp-3 text-ellipsis overflow-hidden whitespace-break-spaces">{note.body}</p>
-      <button 
-      onClick={() => addToFavorite(noteId)}
-      className="absolute z-10 right-0 bottom-0 px-5 py-5 pb-3 cursor-default group"
-      >
-        {
-          isFavorite ? <FontAwesomeIcon 
+      {
+        isFavorite ? <button 
+        onClick={removeFromFav}
+        className="absolute z-10 right-0 bottom-0 px-5 py-5 pb-3 cursor-default group"
+        > <FontAwesomeIcon 
           icon={faSolidHeart} 
           className=" w-5 h-5 text-[#D80032] transition-all ease-linear"
-          /> : <FontAwesomeIcon 
+          />
+        </button> : <button 
+        onClick={addToFav}
+        className="absolute z-10 right-0 bottom-0 px-5 py-5 pb-3 cursor-default group"
+        > <FontAwesomeIcon 
           icon={faHeart} 
           className=" w-5 h-5 text-[#D80032] transition-all ease-linear"
           />
-        }
-      </button>
+        </button>
+      }
     </article>
   )
 }
-export default NoteClip
+export default NoteClip;

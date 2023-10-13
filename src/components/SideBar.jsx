@@ -5,7 +5,7 @@ import { faBook, faMagnifyingGlass, faArrowRightFromBracket, faHeart } from "@fo
 import { useNoteContext } from "../Context/noteContext";
 import { useNavigate } from "react-router-dom";
 
-const SideBar = () => {
+const SideBar = ({show}) => {
   const { darkMode } = useThemeContext();
   const { logOut } = useNoteContext();
   const navigate = useNavigate()
@@ -15,8 +15,10 @@ const SideBar = () => {
     return navigate("/")
   }
 
+
+
   return (
-    <section className="absolute top-0 right-full md:right-auto bg-blue-700 md:bg-transparent z-10 md:z-auto md:relative w-full h-full border-r-2">
+    <section className={`absolute top-0 right-full  md:right-auto bg-blue-700 md:bg-transparent z-20 md:z-auto md:relative w-full h-full border-r-2 transition-all ease-linear duration-300 ${show ? "translate-x-full" : "translate-x-full md:translate-x-0"}`}>
       <header className="p-5 md:p-7  md:py-[30px] border-b flex justify-between items-center">
         <h3 className="text-2xl">Notelify</h3>
         <ToggleSwitch />
@@ -42,7 +44,7 @@ const SideBar = () => {
       {/**Logout button*/}
       <button 
       onClick={handleLogout}
-      className="flex items-center font-medium gap-2 mt-auto text-[#FF6969]/[0.7]"
+      className="flex items-center font-medium gap-2 mt-auto text-[#FF6969]"
       >
         <FontAwesomeIcon 
         icon={faArrowRightFromBracket}

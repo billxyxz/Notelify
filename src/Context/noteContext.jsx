@@ -43,11 +43,12 @@ export const NoteProvider = ({children}) => {
     }
 
     //when you want to create a new note
-    function openNewNoteEditor(title="", body=""){
+    function openNewNoteEditor(title="", body="", favorite=false){
         setNoteTexts(prev => ({
             ...prev,
             title,
-            body
+            body,
+            favorite
         }))
         setShowNoteEditor(true)
     }
@@ -89,6 +90,15 @@ export const NoteProvider = ({children}) => {
         }).catch(error => console.log(err.message));
     }
 
+    //adding note to favorite
+    const removeFromFavorite = async (id) => {
+        const noteToAdd = doc(db, "notes", id);
+        await updateDoc(noteToAdd, {favorite: false})
+        .then(() => {
+            alert("Note removed from favorite!");
+        }).catch(error => console.log(err.message));
+    }
+
     //deleting note
     const  deleteNote = async (id) => {
         const noteToDelete = doc(db, "notes", id)
@@ -120,6 +130,7 @@ export const NoteProvider = ({children}) => {
             addNewNote,
             updateNote,
             addToFavorite,
+            removeFromFavorite,
             deleteNote,
             handleTextChange,
             logOut

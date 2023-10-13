@@ -9,6 +9,7 @@ const Board = () => {
   const { darkMode } = useThemeContext();
   const { showNoteEditor } = useNoteContext();
   const [greetText, setGreetText] = useState("");
+  const {showSideBar, setShowSideBar} = useState(true)
 
 
   //function set greeting
@@ -31,7 +32,7 @@ const Board = () => {
 
   return (
     <section className={`relative w-full h-screen grid grid-cols-4 font-article ${darkMode ? "dark" : ""}`}>
-      <SideBar />
+      <SideBar show={showSideBar} />
       { showNoteEditor && <NoteEditor/> }
       <div className=" col-span-4 md:col-span-3">
         <header className="p-5 md:p-7 px-8 md:px-10 border-b flex md:justify-start items-center">
