@@ -1,9 +1,12 @@
 import { Link, useNavigate, } from "react-router-dom"
 import { 
-    signInWithEmailAndPassword,  
+    GoogleAuthProvider,
+    signInWithEmailAndPassword,
+    signInWithPopup,  
 } from "firebase/auth"
 import { auth } from "../firebase"
 import { useState } from "react"
+import Google from "../assests/images/icons8-google.png"
 
 const Signin = () => {
     const [loginCred, setLoginCred] = useState({
@@ -39,6 +42,17 @@ const Signin = () => {
             }
         })
     }
+
+    const googleProvider = new GoogleAuthProvider();
+
+    async function handleGoogleSignIn(){
+        await signInWithPopup(auth, googleProvider)
+        .then(result => {
+            alert("Login with Gmail Successful!");
+            navigate("/board")
+        }).catch(error => console.log(error.message));
+    };
+
 
   return (
     <div className="w-full max-w-sm mx-auto">
@@ -77,8 +91,16 @@ const Signin = () => {
             className="py-[10px] px-7 bg-[#1450A3] text-gray-50 self-center rounded mt-4">Log In</button>
             <p className="text-[15px]">Don't have an account? <Link 
             to="/signup"
-            className=" hover:text-[#337CCF]       hover:underline underline-offset-2">Signup</Link></p>
+            className=" hover:text-[#337CCF] hover:underline underline-offset-2">Signup</Link></p>
         </form>
+        <div className="w-full flex items-center justify-center gap-2 my-4">
+            <span className="w-1/2 h-[2px] bg-gray-500"></span>
+            <span>OR</span>
+            <span className="w-1/2 h-[2px] bg-gray-500"></span>
+        </div>
+        <button 
+        onClick={handleGoogleSignIn}
+        className="w-full max-w-[300px] mx-auto flex items-center justify-center bg-[#1450A3] text-gray-50 py-3 rounded"><img src={Google} alt="Google" className=" w-7 mr-7" />Continue with Goggle</button>
     </div>
   )
 }

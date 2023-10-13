@@ -4,12 +4,13 @@ import { useThemeContext } from "../Context/themeContext"
 import NoteEditor from "../components/NoteEditor";
 import SideBar from "../components/SideBar"
 import { Outlet } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars, } from "@fortawesome/free-solid-svg-icons";
 
 const Board = () => {
   const { darkMode } = useThemeContext();
-  const { showNoteEditor } = useNoteContext();
+  const { showNoteEditor, showSideBar, setShowSideBar } = useNoteContext();
   const [greetText, setGreetText] = useState("");
-  const {showSideBar, setShowSideBar} = useState(true)
 
 
   //function set greeting
@@ -32,11 +33,16 @@ const Board = () => {
 
   return (
     <section className={`relative w-full h-screen grid grid-cols-4 font-article ${darkMode ? "dark" : ""}`}>
-      <SideBar show={showSideBar} />
+      <SideBar />
       { showNoteEditor && <NoteEditor/> }
       <div className=" col-span-4 md:col-span-3">
-        <header className="p-5 md:p-7 px-8 md:px-10 border-b flex md:justify-start items-center">
+        <header className="p-5 md:p-7 px-8 md:px-10 border-b flex justify-between md:justify-start items-baseline">
           <h3 className="text-3xl font-medium font-['Alegreya']">{greetText}</h3>
+          <button 
+          onClick={() => setShowSideBar(!showSideBar)}
+          className="md:hidden">
+            <FontAwesomeIcon icon={faBars} className=" text-2xl" />
+          </button>
         </header>
         <Outlet />
       </div>

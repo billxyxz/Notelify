@@ -2,15 +2,19 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNoteContext } from "../Context/noteContext";
 import { useThemeContext } from "../Context/themeContext"
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import DeletePopup from "./DeletePopup";
+import { useState } from "react";
 
 const NoteEditor = () => {
     const {darkMode} = useThemeContext();
-    const {noteTexts, handleTextChange, closeNoteEditor, addNewNote, noteId, updateNote, deleteNote} = useNoteContext();
+    const {noteTexts, handleTextChange, closeNoteEditor, addNewNote, noteId, updateNote,} = useNoteContext();
+    const [showPopup, setShowPopup] = useState(false)
 
   return (
-    <div className={`absolute z-20 top-0 left-0 w-full h-screen flex justify-center items-center px-10 md:px-24  ${darkMode ? "bg-dark" : "bg-light"}`}>
+    <section className={`absolute z-20 top-0 left-0 w-full h-full flex justify-center items-start pt-10 px-10 md:px-24  ${darkMode ? "bg-dark" : "bg-light"}`}>
+        {showPopup && <DeletePopup handleShow={setShowPopup} />}
         <div className="w-full max-w-lg mx-auto flex flex-col">
-            <div className="mb-7">
+            <div className="mb-5">
                 <label htmlFor="title">Title</label>
                 <input 
                 onChange={handleTextChange}
@@ -34,17 +38,17 @@ const NoteEditor = () => {
                 />
             </div>
             {noteId && <button 
-            onClick={() => deleteNote(noteId)}
+            onClick={() => setShowPopup(true)}
             className=" self-end group">
                 <FontAwesomeIcon 
                 icon={faTrash}
                 className="w-4 h-4 p-2 text-[#D80032] group-hover:text-[#D80032]/[0.6]"
                 />
             </button>}
-            <div className="flex justify-center gap-7 mt-7">
+            <div className="flex justify-center gap-7 mt-5">
                 <button 
                 onClick={() => closeNoteEditor()}
-                className="border border-[#D80032] bg-transparent hover:bg-[#D80032]/[0.5] hover:text-light rounded py-2 px-5 transition-all">Cancel</button>
+                className={`border bg-transparent  rounded py-2 px-5 transition-all ${darkMode ? "" : "border-dark"}`}>Cancel</button>
                 {
                 noteId ? <button 
                 onClick={() => updateNote()}
@@ -54,7 +58,7 @@ const NoteEditor = () => {
                 }
             </div>
         </div>
-    </div>
+    </section>
   )
 }
 

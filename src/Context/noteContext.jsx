@@ -22,6 +22,7 @@ export const NoteProvider = ({children}) => {
     });
     const [showNoteEditor, setShowNoteEditor] = useState(false);
     const [noteId, setNoteId] = useState(null);
+    const [showSideBar, setShowSideBar] = useState(false);
 
     const collectionRef = collection(db, "notes");
 
@@ -121,6 +122,8 @@ export const NoteProvider = ({children}) => {
 
         return (
         <NoteContext.Provider value={{
+            showSideBar,
+            setShowSideBar,
             noteTexts,
             noteId,
             showNoteEditor,
