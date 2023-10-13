@@ -14,6 +14,7 @@ import FaqPage from "./Pages/FaqPage"
 import NotesBoard from "./components/NotesBoard"
 import { NoteProvider } from "./Context/noteContext"
 import FavNotes from "./components/FavNotes"
+import Contact from "./Pages/Contact"
 
 
 const routes = createBrowserRouter(createRoutesFromElements(
@@ -21,6 +22,7 @@ const routes = createBrowserRouter(createRoutesFromElements(
   <Route path="/" element={<Layout />}>
     <Route index element={<Welcome />} />
     <Route path="faqs" element={<FaqPage />} />
+    <Route path="contact" element={<Contact />} />
     <Route path="signup" element={<Login />}>
       <Route index element={<Signup />} />
       <Route path="signin" element={<Signin />} />
