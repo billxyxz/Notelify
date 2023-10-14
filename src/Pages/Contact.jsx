@@ -15,7 +15,7 @@ const Contact = () => {
   }
 
   useEffect(() => {
-    window.scrollTo(0,0)
+    window.scrollTo(0,0);
   }, []);
 
   return (
@@ -23,7 +23,7 @@ const Contact = () => {
         <h4 className="text-3xl font-medium mb-7">Got Inquries? Contact Us</h4>
         <article className="flex flex-col gap-2 mb-7">
             <p className=" max-w-md mx-auto">For any assistance or inquiries related to our products or services, please contact our customer support team:</p>
-            <ul className="flex flex-col gap-1 tracking-[2px]">
+            <ul className="flex flex-col gap-1 tracking-[1px]">
                 <li><a href="mailto:erobagacollins@gmail.com">erobagacollins@gmail.com</a></li>
                 <li><a href="tel:+2348064417586">+234-806-6441-7586</a></li>
             </ul>
@@ -40,7 +40,7 @@ const Contact = () => {
               type="email" 
               name="senderEmail"
               id="email"
-              className={`w-full py-3 px-5 border-b mt-1 outline-none ${darkMode ? "" : "border-dark"}`}
+              className={`w-full py-3 px-5 border-b mt-1 bg-transparent outline-none ${darkMode ? "" : "border-dark"}`}
               />
             </div>
             <div className="w-full text-left">
@@ -48,7 +48,7 @@ const Contact = () => {
               <textarea  
               name="senderMessage"
               id="message"
-              className={`w-full h-[130px] py-3 px-5 border-b mt-1 outline-none resize-none ${darkMode ? "" : "border-dark"}`}
+              className={`w-full h-[130px] py-3 px-5 border-b mt-1 bg-transparent outline-none resize-none ${darkMode ? "" : "border-dark"}`}
               />
             </div>
             <button className=" self-center p-3 px-7 bg-[#1450A3] text-light">SEND</button>

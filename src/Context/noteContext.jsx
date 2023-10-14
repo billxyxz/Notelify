@@ -1,4 +1,4 @@
-import { addDoc, collection, deleteDoc, doc, updateDoc, } from "firebase/firestore";
+import { addDoc, collection, deleteDoc, doc, serverTimestamp, updateDoc, } from "firebase/firestore";
 import { createContext, 
     useContext, 
     useEffect, 
@@ -18,7 +18,8 @@ export const NoteProvider = ({children}) => {
     const [noteTexts, setNoteTexts] = useState({
         title: "",
         body: "",
-        favorite: false
+        favorite: false,
+        createdAt: serverTimestamp(),
     });
     const [showNoteEditor, setShowNoteEditor] = useState(false);
     const [noteId, setNoteId] = useState(null);
@@ -65,7 +66,7 @@ export const NoteProvider = ({children}) => {
 
     //creating/adding a new note
     async function addNewNote(){
-        await addDoc(collectionRef, {...noteTexts, author: {id: auth.currentUser.uid}})
+        await addDoc(collectionRef, {...noteTexts, author: {id: auth.currentUser.uid},})
         .then(() => {
             setShowNoteEditor(false);
         }).catch(error => console.log(error.message))
@@ -86,7 +87,7 @@ export const NoteProvider = ({children}) => {
         const noteToAdd = doc(db, "notes", id);
         await updateDoc(noteToAdd, {favorite: true})
         .then(() => {
-        }).catch(error => console.log(err.message));
+        }).catch(err => console.log(err.message));
     }
 
     //adding note to favorite
@@ -113,7 +114,7 @@ export const NoteProvider = ({children}) => {
     }
 
     useEffect(() => {
-        onAuthStateChanged(auth, (data) => console.log(data))
+        onAuthStateChanged(auth, (data) => data)
     }, []);
 
         return (

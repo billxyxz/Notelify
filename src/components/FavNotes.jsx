@@ -32,7 +32,7 @@ const FavNotes = () => {
             {
                 favNotes.length < 1 ? <h4>You have no favorite notes</h4> : favNotes.map((note, idx) => {
                     return (
-                        <NoteClip key={idx} note={note} />
+                        <NoteClip key={idx} num={idx} note={note} />
                     )
                 })
             }

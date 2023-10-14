@@ -11,7 +11,9 @@ const Navbar = () => {
 
   return (
     <header className={`flex justify-between items-center h-16 lg:h-20 md:h-[70px] w-full pr-12 pl-12 lg:px-36 fixed top-0 left-0 z-40 border-b border-gray-400 ${darkMode ? "dark" : "bg-light"}`}>
-        <Link to="/">
+        <Link 
+        onClick={() => setShowNav(false)}
+        to="/">
           <h3 className=" text-3xl font-logo font-semibold text-[#1450A3] flex items-center gap-1">
             <span>Notelify</span>
             <span><FontAwesomeIcon icon={faPencil} className="text-2xl" /></span>
@@ -32,9 +34,9 @@ const Navbar = () => {
         <div 
         onClick={() => setShowNav(!showNav)}
         className="flex flex-col gap-1 md:hidden cursor-pointer">{/**Hamburger */}
-           <div className={`w-7 h-1 bg-[#1450A3] rounded-2xl transition-all ${showNav ? "rotate-45 translate-y-3 translate-x-1" : ""}`}></div>
+           <div className={`w-7 h-1 bg-[#1450A3] rounded-2xl transition-all duration-300 ${showNav ? "rotate-45 translate-y-3 translate-x-1" : ""}`}></div>
            <div className={`w-8 h-1 bg-[#1450A3] rounded-2xl transition-all ${showNav ? "opacity-0" : ""}`}></div>
-           <div className={`w-7 h-1 self-end bg-[#1450A3] rounded-2xl transition-all ${showNav ? "-rotate-45 -translate-y-1" : ""}`}></div>
+           <div className={`w-7 h-1 self-end bg-[#1450A3] rounded-2xl transition-all duration-300 ${showNav ? "-rotate-45 -translate-y-1" : ""}`}></div>
         </div>
     </header>
   );

@@ -31,7 +31,7 @@ const SideBar = () => {
     <section className={`absolute top-0 right-full md:right-auto md:bg-transparent z-20 md:z-auto md:relative w-4/5 md:w-full h-screen border-r-2 md:translate-x-0 transition-all ease-linear duration-300 ${showSideBar ? "translate-x-full" : ""} ${darkMode ? "bg-dark" : "bg-light"}`}>
       <header className="p-[22px] md:p-7  md:py-[30px] border-b flex justify-between items-center">
         <h3 className="text-2xl font-logo font-medium cursor-default text-[#1450A3] flex items-center gap-1">
-          <span>Notelify</span>
+          <span className=" font-semibold">Notelify</span>
           <span><FontAwesomeIcon icon={faPencil} className=" text-[21px]" /></span>
         </h3>
         <ToggleSwitch />

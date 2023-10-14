@@ -20,7 +20,7 @@ const PasswordReset = () => {
     };
 
   return (
-    <section className="flex flex-col -mt-5">
+    <section className="flex flex-col -mt-5 w-full max-w-[350px] mx-auto">
     <FontAwesomeIcon 
     onClick={() => navigate("..")}
     icon={faChevronLeft}
@@ -28,7 +28,7 @@ const PasswordReset = () => {
     />
     <form 
     onSubmit={handleSendResetLink}
-    className="flex flex-col gap-4 w-full max-w-[350px] mx-auto">
+    className="flex flex-col gap-4 w-full">
         <p className="text-left text-sm">Enter the email address associated with your account and we'll send you a link to reset your password.</p>
         <div className="text-left w-full">
             <label htmlFor="email">Email</label>

@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { useThemeContext } from "../Context/themeContext"
 import { useEffect, useState } from "react";
 import { auth, db, } from "../firebase";
-import { collection, onSnapshot, } from "firebase/firestore";
+import { collection, onSnapshot, orderBy, query, } from "firebase/firestore";
 import NoteClip from "./NoteClip";
 import { useNoteContext } from "../Context/noteContext";
 
@@ -11,7 +11,7 @@ import { useNoteContext } from "../Context/noteContext";
 const NotesBoard = () => {
     const [notes, setNotes] = useState([]);
     const {darkMode} = useThemeContext();
-    const {openNewNoteEditor} = useNoteContext();
+    const {openNewNoteEditor, noteTexts} = useNoteContext();
 
     const collectionRef = collection(db, "notes");
 
@@ -21,13 +21,13 @@ const NotesBoard = () => {
                 const userNotes = data.docs.filter(item => item.data().author.id == auth.currentUser.uid )
                 setNotes(userNotes.map(note => {
                 return {
-                ...note.data(), id: note.id
+                ...note.data(), id: note.id,
                 };
             })); 
-            console.log(userNotes) 
         })
     }
 
+    const sortedNotes = notes?.sort((a,b) => b.createdAt.seconds - a.createdAt.seconds);
 
     useEffect(() => {
         getNotes();
@@ -42,7 +42,7 @@ const NotesBoard = () => {
         <h4 className="my-5 text-2xl font-semibold">Notes</h4>
         <div className="flex justify-center md:justify-normal gap-3 md:gap-4 flex-wrap">
             {
-                notes.length < 1 ? <h4>You have no notes</h4> : notes.map((note, idx) => {
+                notes.length < 1 ? <h4>You have no notes</h4> : sortedNotes.map((note, idx) => {
                     return (
                         <NoteClip key={idx} num={idx} note={note} />
                     )

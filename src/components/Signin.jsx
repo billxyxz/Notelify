@@ -73,7 +73,7 @@ const Signin = () => {
 
   return (
     <div className="w-full max-w-sm mx-auto">
-        <h4 className=" text-3xl font-semibold mb-5">Log in to your account</h4>
+        <h4 className=" text-3xl font-semibold mb-7">Log in to your account</h4>
         {loginError && <p className=" mb-3 text-red-600">{loginError}</p> }
         <form 
         onSubmit={handleLogin}
