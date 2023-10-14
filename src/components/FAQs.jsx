@@ -1,4 +1,4 @@
-import { faCaretDown, faChevronDown } from "@fortawesome/free-solid-svg-icons";
+import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import { useThemeContext } from "../Context/themeContext";
@@ -41,6 +41,7 @@ const FAQItem = ({question, answer }) => {
                 <h5>{question}</h5>
                 <button
                 onClick={() => setShowAns(!showAns)}
+                className="p-1"
                 ><FontAwesomeIcon 
                 icon={faChevronDown}
                 className={`transition-all duration-200 ${showAns ? " -scale-100" : ""}`} 

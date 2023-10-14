@@ -7,6 +7,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
+        "logo": ["Lobster Two", "sans-serif"],
         "navlinks": ["Montserrat", "sans-serif"],
         "article": ["Roboto", "sans-serif"],
       },

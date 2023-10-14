@@ -23,6 +23,7 @@ export const NoteProvider = ({children}) => {
     const [showNoteEditor, setShowNoteEditor] = useState(false);
     const [noteId, setNoteId] = useState(null);
     const [showSideBar, setShowSideBar] = useState(false);
+    const [searchQuery, setSearchQuery] = useState("")
 
     const collectionRef = collection(db, "notes");
 
@@ -66,7 +67,6 @@ export const NoteProvider = ({children}) => {
     async function addNewNote(){
         await addDoc(collectionRef, {...noteTexts, author: {id: auth.currentUser.uid}})
         .then(() => {
-            alert("Note added!");
             setShowNoteEditor(false);
         }).catch(error => console.log(error.message))
     }
@@ -76,7 +76,6 @@ export const NoteProvider = ({children}) => {
         const noteToUpdate = doc(db, "notes", noteId);
         await updateDoc(noteToUpdate, {...noteTexts, author: {id: auth.currentUser.uid}})
         .then(() => {
-            alert("Changes saved!");
             setNoteId(null)
             setShowNoteEditor(false);
         }).catch(error => console.log(error.message));
@@ -87,7 +86,6 @@ export const NoteProvider = ({children}) => {
         const noteToAdd = doc(db, "notes", id);
         await updateDoc(noteToAdd, {favorite: true})
         .then(() => {
-            alert("Note added to favorite!");
         }).catch(error => console.log(err.message));
     }
 
@@ -96,7 +94,6 @@ export const NoteProvider = ({children}) => {
         const noteToAdd = doc(db, "notes", id);
         await updateDoc(noteToAdd, {favorite: false})
         .then(() => {
-            alert("Note removed from favorite!");
         }).catch(error => console.log(err.message));
     }
 
@@ -105,7 +102,6 @@ export const NoteProvider = ({children}) => {
         const noteToDelete = doc(db, "notes", id)
         await deleteDoc(noteToDelete)
         .then(() => {
-            alert("note deleted!")
             setShowNoteEditor(false);
             setNoteId(null)
         }).catch(err => console.log(err.message))

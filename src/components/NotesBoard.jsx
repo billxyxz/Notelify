@@ -38,7 +38,7 @@ const NotesBoard = () => {
     <section className="w-full p-10 px-7 md:px-18">
         <button
         onClick={() => openNewNoteEditor()}
-        className={`flex gap-3 items-center py-2 px-3 rounded-full ${darkMode ? "bg-[#E4F1FF] text-dark" : "bg-[#E4F1FF]"}`}><FontAwesomeIcon icon={faPlus} /><span>Create new note</span></button>
+        className={`flex gap-3 items-center py-2 px-3 rounded-full ${darkMode ? "bg-[#E4F1FF] text-dark" : "bg-[#BEFFF7]"}`}><FontAwesomeIcon icon={faPlus} /><span>Create new note</span></button>
         <h4 className="my-5 text-2xl font-semibold">Notes</h4>
         <div className="flex justify-center md:justify-normal gap-3 md:gap-4 flex-wrap">
             {

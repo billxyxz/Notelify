@@ -33,7 +33,8 @@ const Signin = () => {
         await signInWithEmailAndPassword(auth, loginCred.email, loginCred.password)
         .then(result => {
             navigate("/board")
-            console.log(result)
+            // console.log(result);
+            return result;
         }).catch(error => {
             if(error.message.replace("Firebase: Error ", "") == "(auth/invalid-login-credentials)."){
                 setLoginError("invalid-login-credentials");
@@ -48,7 +49,6 @@ const Signin = () => {
     async function handleGoogleSignIn(){
         await signInWithPopup(auth, googleProvider)
         .then(result => {
-            alert("Login with Gmail Successful!");
             navigate("/board")
         }).catch(error => console.log(error.message));
     };

@@ -32,7 +32,7 @@ const Board = () => {
   }, [])
 
   return (
-    <section className={`relative w-full h-screen grid grid-cols-4 font-article ${darkMode ? "dark" : ""}`}>
+    <section className={`relative w-full min-h-screen grid grid-cols-4 font-article ${darkMode ? "dark" : ""}`}>
       <SideBar />
       { showNoteEditor && <NoteEditor/> }
       <div className=" col-span-4 md:col-span-3">

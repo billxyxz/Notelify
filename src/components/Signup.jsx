@@ -45,7 +45,8 @@ const Signup = () => {
             .then(() => {
                 alert("Verification Link has been sent to your email");
             })
-            console.log(result.user);
+            // console.log(result.user);
+            return result;
             }).catch(error => console.log(error.message));
             setPasswordError("");
         }else{
@@ -58,7 +59,6 @@ const Signup = () => {
     async function handleGoogleSignIn(){
         await signInWithPopup(auth, googleProvider)
         .then(result => {
-            alert("Login with Gmail Successful!");
             navigate("/board")
         }).catch(error => console.log(error.message));
     };
