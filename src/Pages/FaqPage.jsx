@@ -1,9 +1,14 @@
+import { useEffect } from "react";
 import { useThemeContext } from "../Context/themeContext"
 import FAQs from "../components/FAQs";
 
 
 const FaqPage = () => {
   const { darkMode } = useThemeContext();
+
+  useEffect(() => {
+    window.scrollTo(0,0)
+  }, []);
 
   return (
     <section className={`w-full min-h-screen py-24 md:pt-32 lg:pt-32 px-12 lg:px-36 text-center ${darkMode ? "dark" : ""}`}>

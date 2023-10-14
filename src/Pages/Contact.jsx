@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useThemeContext } from "../Context/themeContext"
 
 const Contact = () => {
@@ -14,6 +14,9 @@ const Contact = () => {
     formRef.current.reset();
   }
 
+  useEffect(() => {
+    window.scrollTo(0,0)
+  }, []);
 
   return (
     <section className={`w-full min-h-screen py-24 md:pt-32 lg:pt-32 px-12 lg:px-36 font-article text-center ${darkMode ? "dark" : ""}`}>

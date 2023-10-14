@@ -17,7 +17,7 @@ const Footer = () => {
         </nav>
         <a href="mailto:erobagacollins@gmail.com">erobagacollins@gmail.com</a>
         <a href="tel:+2348064417586">+234-806-441-7586</a>
-        <p className=" text-gray-500 pt-4 border-t mt-2 max-w-sm mx-auto">&copy; Copyright 2023 Notelify. All Rights Reserved</p>
+        <p className=" text-gray-500 pt-4 border-t border-gray-400 mt-2 w-full max-w-md mx-auto">&copy; Copyright 2023 Notelify. All Rights Reserved</p>
     </footer>
   )
 }

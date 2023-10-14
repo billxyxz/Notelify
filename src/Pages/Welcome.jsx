@@ -1,13 +1,19 @@
+import { useEffect } from "react";
 import { useThemeContext } from "../Context/themeContext";
 import NotePNG from "../assests/images/note.png"
+import Mockup from "../assests/images/mockup.png"
 import { useNavigate } from "react-router-dom"
 
 const Welcome = () => {
   const navigate = useNavigate();
   const { darkMode } = useThemeContext();
 
+  useEffect(() => {
+    window.scrollTo(0,0)
+  }, []);
+
   return (
-    <section className={`w-full min-h-screen py-24 md:pt-32 px-12 lg:px-36 text-center ${darkMode ? "dark" : ""}`}>
+    <section className={`w-full min-h-screen py-24 md:pt-32 px-12 lg:px-36 text-center flex flex-col items-center ${darkMode ? "dark" : ""}`}>
         <div className="w-[250px] sm:w-[300px] md:w-[400px] mx-auto absolute left-0 md:left-[15%] top-[30%] sm:top-[20%] md:flex -z-10">
         <img src={NotePNG} />
         </div>
@@ -19,6 +25,11 @@ const Welcome = () => {
         <button 
         onClick={() => navigate("/signup")}
         className="px-5 py-2 bg-[#1450A3] text-white rounded-[4px]">Get Started</button>
+        <img 
+        src={Mockup} 
+        alt="" 
+        className="w-full md:w-auto"
+        />
     </section>
   )
 }

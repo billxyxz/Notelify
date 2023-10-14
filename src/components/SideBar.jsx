@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useThemeContext } from "../Context/themeContext"
 import ToggleSwitch from "./ToggleSwitch"
-import { faBook, faMagnifyingGlass, faArrowRightFromBracket, faHeart } from "@fortawesome/free-solid-svg-icons";
+import { faBook, faMagnifyingGlass, faArrowRightFromBracket, faHeart, faPencil } from "@fortawesome/free-solid-svg-icons";
 import { useNoteContext } from "../Context/noteContext";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
@@ -29,9 +29,12 @@ const SideBar = () => {
 
 
   return (
-    <section className={`absolute top-0 right-full md:right-auto md:bg-transparent z-20 md:z-auto md:relative w-4/5 md:w-full h-screen border-r-2 md:translate-x-0 transition-all ease-linear duration-300 ${showSideBar ? "translate-x-full" : ""} ${darkMode ? "bg-dark" : "bg-light"}`}>
+    <section className={`absolute top-0 right-full md:right-auto md:bg-transparent z-20 md:z-auto md:relative w-3/5 md:w-full h-screen border-r-2 md:translate-x-0 transition-all ease-linear duration-300 ${showSideBar ? "translate-x-full" : ""} ${darkMode ? "bg-dark" : "bg-light"}`}>
       <header className="p-[22px] md:p-7  md:py-[30px] border-b flex justify-between items-center">
-        <h3 className="text-2xl font-logo font-medium cursor-default text-[#1450A3]">Notelify</h3>
+        <h3 className="text-2xl font-logo font-medium cursor-default text-[#1450A3] flex items-center gap-1">
+          <span>Notelify</span>
+          <span><FontAwesomeIcon icon={faPencil} className=" text-[21px]" /></span>
+        </h3>
         <ToggleSwitch />
       </header>
       <nav className="p-5 md:p-7 py-9 flex flex-col gap-7 h-5/6 items-start">

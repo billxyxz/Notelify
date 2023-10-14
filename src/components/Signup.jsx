@@ -1,5 +1,5 @@
 import { useRef, useState } from "react"
-import { Link, redirect, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Google from "../assests/images/icons8-google.png"
 import { auth } from "../firebase";
 import { createUserWithEmailAndPassword, 
@@ -7,6 +7,8 @@ import { createUserWithEmailAndPassword,
     GoogleAuthProvider, 
     signInWithPopup 
 } from "firebase/auth";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
 
 
 
@@ -17,6 +19,7 @@ const Signup = () => {
         password: "",
         confirmPassword: "",
     });
+    const [showPassword, setShowPassword] = useState(false)
     const [passwordError, setPasswordError] = useState("");
     const passwordRef = useRef();
     const passwordConfirmRef = useRef();
@@ -24,6 +27,19 @@ const Signup = () => {
     const navigate = useNavigate();
 
     const googleProvider = new GoogleAuthProvider();
+
+    //to show password or not
+    const handleShowPassword = () => {
+        if(showPassword){
+            passwordRef.current.type = "password";
+            passwordConfirmRef.current.type = "password";
+            setShowPassword(false);
+        }else{
+            passwordRef.current.type = "text";
+            passwordConfirmRef.current.type = "text";
+            setShowPassword(true);
+        }
+    }
 
 
     //funtion to handle inputs change
@@ -82,7 +98,7 @@ const Signup = () => {
                 className="block mt-[6px] border-2 border-[#1450A3] rounded py-2 px-4 w-full outline-none text-dark" 
                 />
             </div>
-            <div className="text-left w-full">
+            <div className="relative text-left w-full">
                 <label htmlFor="password" className=" font-medium">Password</label>
                 <input 
                 required
@@ -95,6 +111,17 @@ const Signup = () => {
                 placeholder="Enter a password" 
                 className="block mt-[6px] border-2 border-[#1450A3] rounded py-2 px-4 w-full outline-none text-dark" 
                 />
+                {
+                    showPassword ? ( <FontAwesomeIcon
+                    onClick={handleShowPassword} 
+                    icon={faEye} 
+                    className="absolute bottom-0 right-0 text-dark p-[14px] bg-inherit cursor-pointer"
+                    /> ) : ( <FontAwesomeIcon
+                    onClick={handleShowPassword} 
+                    icon={faEyeSlash} 
+                    className="absolute bottom-0 right-0 text-dark p-[14px] bg-inherit cursor-pointer"
+                    /> )
+                }
             </div>
             <div className="text-left w-full">
                 <label htmlFor="confirm-password" className=" font-medium">Confirm Password</label>

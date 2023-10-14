@@ -5,8 +5,10 @@ import {
     signInWithPopup,  
 } from "firebase/auth"
 import { auth } from "../firebase"
-import { useState } from "react"
+import { useRef, useState } from "react"
 import Google from "../assests/images/icons8-google.png"
+import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 const Signin = () => {
     const [loginCred, setLoginCred] = useState({
@@ -14,7 +16,20 @@ const Signin = () => {
         password: "",
     });
     const [loginError, setLoginError] = useState("");
+    const [showPassword, setShowPassword] = useState(false)
+    const passwordRef = useRef();
     const navigate = useNavigate();
+
+    //to show password or not
+    const handleShowPassword = () => {
+        if(showPassword){
+            passwordRef.current.type = "password";
+            setShowPassword(false);
+        }else{
+            passwordRef.current.type = "text";
+            setShowPassword(true);
+        }
+    }
 
     //function to handle inputs change
     function handleInputsChange(e){
@@ -26,6 +41,7 @@ const Signin = () => {
         }));
         console.log(auth)
     };
+
 
     //function to handle login
     async function handleLogin(e){
@@ -50,6 +66,7 @@ const Signin = () => {
         await signInWithPopup(auth, googleProvider)
         .then(result => {
             navigate("/board")
+            return result;
         }).catch(error => console.log(error.message));
     };
 
@@ -74,10 +91,11 @@ const Signin = () => {
                 className="block mt-[6px] border-2 border-[#1450A3] rounded py-2 px-4 w-full outline-none text-dark" 
                 />
             </div>
-            <div className="text-left w-full">
+            <div className="relative text-left w-full">
                 <label htmlFor="password" className=" font-medium">Password</label>
                 <input 
                 required
+                ref={passwordRef}
                 id="password" 
                 name="password" 
                 type="password"
@@ -86,6 +104,17 @@ const Signin = () => {
                 placeholder="Enter your password" 
                 className="block mt-[6px] border-2 border-[#1450A3] rounded py-2 px-4 w-full outline-none text-dark" 
                 />
+                {
+                    showPassword ? ( <FontAwesomeIcon
+                    onClick={handleShowPassword} 
+                    icon={faEye} 
+                    className="absolute bottom-0 right-0 text-dark p-[14px] bg-inherit cursor-pointer"
+                    /> ) : ( <FontAwesomeIcon
+                    onClick={handleShowPassword} 
+                    icon={faEyeSlash} 
+                    className="absolute bottom-0 right-0 text-dark p-[14px] bg-inherit cursor-pointer"
+                    /> )
+                }
             </div>
             <button 
             className="py-[10px] px-7 bg-[#1450A3] text-gray-50 self-center rounded mt-4">Log In</button>
