@@ -24,7 +24,7 @@ const Welcome = () => {
         </article>
         <button 
         onClick={() => navigate("/signup")}
-        className="px-5 py-2 bg-[#1450A3] text-white rounded-[4px]">Get Started</button>
+        className="px-5 md:px-7 py-2 md:py-3 bg-[#1450A3] text-white rounded-[4px] text-[17px] md:text-[18px]">Get Started</button>
         <img 
         src={Mockup} 
         alt="" 

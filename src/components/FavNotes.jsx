@@ -21,8 +21,6 @@ const FavNotes = () => {
         })
     };
 
-    console.log(favNotes)
-
     useEffect(() => {
         getFavoriteNotes();
     }, [])

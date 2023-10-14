@@ -44,7 +44,7 @@ const NotesBoard = () => {
             {
                 notes.length < 1 ? <h4>You have no notes</h4> : notes.map((note, idx) => {
                     return (
-                        <NoteClip key={idx} note={note} />
+                        <NoteClip key={idx} num={idx} note={note} />
                     )
                 })
             }

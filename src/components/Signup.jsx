@@ -75,7 +75,8 @@ const Signup = () => {
     async function handleGoogleSignIn(){
         await signInWithPopup(auth, googleProvider)
         .then(result => {
-            navigate("/board")
+            navigate("/board");
+            return result;
         }).catch(error => console.log(error.message));
     };
 

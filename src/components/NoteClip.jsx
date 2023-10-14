@@ -5,11 +5,14 @@ import { useNoteContext } from "../Context/noteContext";
 import { useState } from "react";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 
-const NoteClip = ({note}) => {
+const NoteClip = ({note, num}) => {
     const {darkMode} = useThemeContext();
     const { openCurrentNoteEditor, addToFavorite, removeFromFavorite } = useNoteContext();
     const [noteId] = useState(note.id)
     const [isFavorite, setIsFavorite] = useState(note.favorite)
+
+    const bgColor = num % 2 == 0 ? "bg-[#BEFFF7]" : "bg-[#FDE5D4]" 
+    const bgDarkColor = num % 2 == 0 ? "bg-[#FDE5EC]" : "bg-[#E4F1FF]" 
 
     function removeFromFav(){
       setIsFavorite(false);
@@ -23,8 +26,8 @@ const NoteClip = ({note}) => {
 
   return (
     <article
-    className={`relative w-[200px] aspect-square p-5 rounded-lg group cursor-pointer overflow-hidden ${darkMode ? "bg-[#E4F1FF] text-dark" : "bg-[#BEFFF7]"}`}>
-      <div className="absolute w-full h-full top-0 left-0 z-10 bg-[#E4F1FF]/[0.8] opacity-0 group-hover:opacity-100 flex justify-center items-center transition-all duration-500">
+    className={`relative w-[200px] aspect-square p-5 rounded-lg group cursor-pointer overflow-hidden text-dark ${darkMode ? bgDarkColor : bgColor}`}>
+      <div className={`absolute w-full h-full top-0 left-0 z-10 bg-[#E4F1FF]/[0.8] opacity-0 group-hover:opacity-100 flex justify-center items-center transition-all duration-500`}>
         <button 
         onClick={() => openCurrentNoteEditor(note.title, note.body, noteId)}
         className="p-2 border border-dark rounded full flex items-center gap-2 opacity-0 group-hover:opacity-100">

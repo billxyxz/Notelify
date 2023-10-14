@@ -18,7 +18,7 @@ const Navbar = () => {
           </h3>
         </Link>{/**Logo */}
         <nav className="font-navlinks text-sm font-medium">
-            <ul className={`flex flex-col sm:flex-row justify-center items-center gap-10 py-16 md:py-0 absolute md:relative left-0 md:left-auto md:top-auto w-full md:w-auto md:z-auto min-h-[50vh] -z-10 bg-[#1450A3] text-gray-50 md:text-inherit md:bg-transparent transition-all ease-in duration-150 opacity-0 md:opacity-100 ${showNav ? "top-16 opacity-100" : "-top-[150%]"} sm:translate-y-0`}>
+            <ul className={`flex flex-col sm:flex-row justify-center items-center gap-10 py-16 md:py-0 absolute md:relative left-0 md:left-auto md:top-auto w-full md:w-auto md:z-auto min-h-[50vh] -z-10 bg-[#1450A3] text-gray-50 md:text-inherit md:bg-transparent transition-all ease-in duration-150 opacity-0 md:opacity-100 ${showNav ? "top-16 opacity-100" : "-translate-y-[150%]"} sm:translate-y-0`}>
                 <li><NavLink 
                 onClick={() => setShowNav(false)}
                 to="faqs">FAQs</NavLink></li>
