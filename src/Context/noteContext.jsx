@@ -19,7 +19,6 @@ export const NoteProvider = ({children}) => {
         title: "",
         body: "",
         favorite: false,
-        createdAt: serverTimestamp(),
     });
     const [showNoteEditor, setShowNoteEditor] = useState(false);
     const [noteId, setNoteId] = useState(null);
@@ -66,7 +65,7 @@ export const NoteProvider = ({children}) => {
 
     //creating/adding a new note
     async function addNewNote(){
-        await addDoc(collectionRef, {...noteTexts, author: {id: auth.currentUser.uid},})
+        await addDoc(collectionRef, {...noteTexts, author: {id: auth.currentUser.uid}, createdAt: serverTimestamp()} )
         .then(() => {
             setShowNoteEditor(false);
         }).catch(error => console.log(error.message))
@@ -75,7 +74,7 @@ export const NoteProvider = ({children}) => {
     //saving changes to already existing notes
     async function updateNote(){
         const noteToUpdate = doc(db, "notes", noteId);
-        await updateDoc(noteToUpdate, {...noteTexts, author: {id: auth.currentUser.uid}})
+        await updateDoc(noteToUpdate, {...noteTexts, author: {id: auth.currentUser.uid}, createdAt: serverTimestamp()})
         .then(() => {
             setNoteId(null)
             setShowNoteEditor(false);
