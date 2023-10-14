@@ -27,7 +27,7 @@ const NotesBoard = () => {
         })
     }
 
-    const sortedNotes = notes?.sort((a,b) => b.createdAt.seconds - a.createdAt.seconds);
+    const sortedNotes = notes?.sort((a,b) => b?.createdAt?.seconds - a.createdAt?.seconds);
 
     useEffect(() => {
         getNotes();
@@ -42,7 +42,7 @@ const NotesBoard = () => {
         <h4 className="my-5 text-2xl font-semibold">Notes</h4>
         <div className="flex justify-center md:justify-normal gap-3 md:gap-4 flex-wrap">
             {
-                notes.length < 1 ? <h4>You have no notes</h4> : sortedNotes.map((note, idx) => {
+                notes.length < 1 ? <h4>You have no notes</h4> : notes.map((note, idx) => {
                     return (
                         <NoteClip key={idx} num={idx} note={note} />
                     )
