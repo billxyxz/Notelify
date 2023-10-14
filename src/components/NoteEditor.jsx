@@ -3,12 +3,16 @@ import { useNoteContext } from "../Context/noteContext";
 import { useThemeContext } from "../Context/themeContext"
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import DeletePopup from "./DeletePopup";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const NoteEditor = () => {
     const {darkMode} = useThemeContext();
     const {noteTexts, handleTextChange, closeNoteEditor, addNewNote, noteId, updateNote,} = useNoteContext();
-    const [showPopup, setShowPopup] = useState(false)
+    const [showPopup, setShowPopup] = useState(false);
+
+    useEffect(() => {
+        window.scrollTo(0,0);
+    }, []);
 
   return (
     <section className={`absolute z-20 top-0 left-0 w-full h-full flex justify-center items-start pt-10 px-10 md:px-24  ${darkMode ? "bg-dark" : "bg-light"}`}>

@@ -15,6 +15,7 @@ import NotesBoard from "./components/NotesBoard"
 import { NoteProvider } from "./Context/noteContext"
 import FavNotes from "./components/FavNotes"
 import Contact from "./Pages/Contact"
+import PasswordReset from "./components/PasswordReset"
 
 
 const routes = createBrowserRouter(createRoutesFromElements(
@@ -26,6 +27,7 @@ const routes = createBrowserRouter(createRoutesFromElements(
     <Route path="signup" element={<Login />}>
       <Route index element={<Signup />} />
       <Route path="signin" element={<Signin />} />
+      <Route path="pswrd-reset" element={<PasswordReset />} />
     </Route>
   </Route>
   <Route path="/board" element={<Board />}>

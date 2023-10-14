@@ -116,6 +116,9 @@ const Signin = () => {
                     /> )
                 }
             </div>
+            <p
+            onClick={() => navigate("/signup/pswrd-reset")}
+            className="text-[13px] text-left text-[#FF6969] -mt-3 cursor-pointer">Forgot password?</p>
             <button 
             className="py-[10px] px-7 bg-[#1450A3] text-gray-50 self-center rounded mt-4">Log In</button>
             <p className="text-[15px]">Don't have an account? <Link 
