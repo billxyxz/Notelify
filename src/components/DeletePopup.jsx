@@ -13,10 +13,10 @@ const DeletePopup = ({handleShow}) => {
 
   return (
     <div className={`absolute top-0 left-0 w-full h-full flex justify-center items-start`}>
-        <div className="relative w-full max-w-xs py-9 rounded shadow bg-light text-dark text-center mt-[40%] md:mt-[16%]">
+        <div className="relative w-full max-w-[290px] md:max-w-xs py-9 rounded shadow bg-light text-dark text-center mt-[45%] md:mt-[16%]">
             <button 
             onClick={() => handleShow(false)}
-            className="absolute top-0 left-0 p-3 text-xl">
+            className="absolute top-0 left-0 p-3 text-xl text-gray-700 hover:">
                 <FontAwesomeIcon 
                 icon={faXmark} 
                 />

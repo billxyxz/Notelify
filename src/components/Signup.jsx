@@ -139,7 +139,7 @@ const Signup = () => {
                 {passwordError && <p className=" text-red-700 text-sm">{passwordError}</p>}
             </div>
             <button 
-            className="py-[10px] px-7 bg-[#1450A3] text-gray-50 self-center rounded mt-4 mb-1">Create an account</button>
+            className="py-[10px] px-7 bg-[#1450A3] text-gray-50 self-center rounded mt-4 mb-1 group">Create an account</button>
         </form>
         <p className="text-[15px]">Already have an account? <Link 
         to="signin"

@@ -26,7 +26,7 @@ const NoteClip = ({note, num}) => {
 
   return (
     <article
-    className={`relative w-[200px] aspect-square p-5 rounded-lg group cursor-pointer overflow-hidden text-dark ${darkMode ? bgDarkColor : bgColor}`}>
+    className={`relative w-full max-w-[260px] md:w-[200px] aspect-square p-5 rounded-lg group cursor-pointer overflow-hidden text-dark ${darkMode ? bgDarkColor : bgColor}`}>
       <div className={`absolute w-full h-full top-0 left-0 z-10 bg-[#E4F1FF]/[0.8] opacity-0 group-hover:opacity-100 flex justify-center items-center transition-all duration-500`}>
         <button 
         onClick={() => openCurrentNoteEditor(note.title, note.body, note.id)}

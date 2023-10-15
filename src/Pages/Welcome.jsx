@@ -24,11 +24,11 @@ const Welcome = () => {
         </article>
         <button 
         onClick={() => navigate("/signup")}
-        className="px-[26px] md:px-7 md:py-3 bg-[#1450A3] text-white rounded-[4px] md:text-[18px]">Get Started</button>
+        className="px-[26px] md:px-7 py-2 md:py-3 bg-[#1450A3] text-white rounded-[4px] text-[17px] md:text-[18px]">Get Started</button>
         <img 
         src={Mockup} 
         alt="" 
-        className="w-full md:w-auto"
+        className="w-full scale-[113%] md:scale-[90%]  mt-5 md:-mt-10"
         />
     </section>
   )

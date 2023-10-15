@@ -38,7 +38,7 @@ const NoteEditor = () => {
                 name="body" 
                 id="body"
                 placeholder="What's on your mind? ..."
-                className={`resize-none w-full h-[300px] p-5 border rounded-[4px] mt-1 outline-none ${darkMode ? "bg-transparent" : "bg-[#F1F5F9] border-dark"}`}
+                className={`resize-none w-full h-[400px] p-5 border rounded-[4px] mt-1 outline-none ${darkMode ? "bg-transparent" : "bg-[#F1F5F9] border-dark"}`}
                 />
             </div>
             {noteId && <button 

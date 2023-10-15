@@ -23,7 +23,7 @@ export const NoteProvider = ({children}) => {
     const [showNoteEditor, setShowNoteEditor] = useState(false);
     const [noteId, setNoteId] = useState("");
     const [showSideBar, setShowSideBar] = useState(false);
-    const [searchQuery, setSearchQuery] = useState("")
+    // const [searchQuery, setSearchQuery] = useState("")
 
     const collectionRef = collection(db, "notes");
 
@@ -34,7 +34,7 @@ export const NoteProvider = ({children}) => {
             title,
             body
         }))
-        console.log(title, body, currentId)
+        // console.log(title, body, currentId)
         setNoteId(currentId);
         setShowNoteEditor(true);
         // console.log(noteTexts)
