@@ -58,7 +58,7 @@ const SideBar = () => {
       {/**Logout button*/}
       <button 
       onClick={handleLogout}
-      className={`flex items-center font-medium gap-2 mt-auto text-[#FF6969] ${darkMode ? "" : ""}`}
+      className={`flex items-center font-medium text-lg gap-2 mt-auto text-[#FF6969] ${darkMode ? "" : ""}`}
       >
         <FontAwesomeIcon 
         icon={faArrowRightFromBracket}

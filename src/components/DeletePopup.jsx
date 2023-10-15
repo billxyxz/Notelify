@@ -6,10 +6,10 @@ const DeletePopup = ({handleShow}) => {
     const {deleteNote, noteId} = useNoteContext();
 
     //handle confirm delete
-    // const handleDelete = () => {
-    //     deleteNote(noteId);
-    //     handleShow(false)
-    // }
+    const handleDelete = () => {
+        deleteNote(noteId);
+        handleShow(false)
+    }
 
   return (
     <div className={`absolute top-0 left-0 w-full h-full flex justify-center items-start`}>
@@ -23,7 +23,7 @@ const DeletePopup = ({handleShow}) => {
             </button>
             <h6 className="mb-3">Sure you want to delete?</h6>
             <button 
-            onClick={() => deleteNote(noteId)}
+            onClick={handleDelete}
             className=" p-2 px-4 rounded border border-[#D80032] bg-transparent hover:bg-[#D80032]/[0.7] hover:text-light transition-all">Confirm</button>
         </div>
     </div>

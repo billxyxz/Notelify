@@ -21,7 +21,7 @@ const NoteClip = ({note, num}) => {
 
     function addToFav(){
       setIsFavorite(true);
-      addToFavorite(noteId);
+      addToFavorite(note.id);
     }
 
   return (
@@ -29,7 +29,7 @@ const NoteClip = ({note, num}) => {
     className={`relative w-[200px] aspect-square p-5 rounded-lg group cursor-pointer overflow-hidden text-dark ${darkMode ? bgDarkColor : bgColor}`}>
       <div className={`absolute w-full h-full top-0 left-0 z-10 bg-[#E4F1FF]/[0.8] opacity-0 group-hover:opacity-100 flex justify-center items-center transition-all duration-500`}>
         <button 
-        onClick={() => openCurrentNoteEditor(note.title, note.body, noteId)}
+        onClick={() => openCurrentNoteEditor(note.title, note.body, note.id)}
         className="p-2 border border-dark rounded full flex items-center gap-2 opacity-0 group-hover:opacity-100">
           <span>Open</span>
           <FontAwesomeIcon 
@@ -43,14 +43,14 @@ const NoteClip = ({note, num}) => {
       {
         note.favorite ? <button 
         onClick={removeFromFav}
-        className="absolute z-10 right-0 bottom-0 px-5 py-5 pb-3 cursor-default group"
+        className="absolute z-10 right-0 bottom-0 px-5 py-5 pb-3 cursor-pointer group"
         > <FontAwesomeIcon 
           icon={faSolidHeart} 
           className=" w-5 h-5 text-[#D80032] transition-all ease-linear"
           />
         </button> : <button 
         onClick={addToFav}
-        className="absolute z-10 right-0 bottom-0 px-5 py-5 pb-3 cursor-default group"
+        className="absolute z-10 right-0 bottom-0 px-5 py-5 pb-3 cursor-pointer group"
         > <FontAwesomeIcon 
           icon={faHeart} 
           className=" w-5 h-5 text-[#D80032] transition-all ease-linear"

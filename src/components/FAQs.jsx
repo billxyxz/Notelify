@@ -36,11 +36,12 @@ const FAQItem = ({question, answer }) => {
     const {darkMode} = useThemeContext();
 
     return (
-        <div className={`p-3 border-b-2 flex flex-col gap-3 shadow-md ${darkMode ? "" : "border-[#1450A3]"}`}>
+        <div 
+        onClick={() => setShowAns(!showAns)}
+        className={`p-3 border-b-2 flex flex-col gap-3 shadow-md cursor-pointer ${darkMode ? "" : "border-[#1450A3]"}`}>
             <div className="flex justify-between items-start font-semibold">
                 <h5>{question}</h5>
                 <button
-                onClick={() => setShowAns(!showAns)}
                 className="p-1"
                 ><FontAwesomeIcon 
                 icon={faChevronDown}

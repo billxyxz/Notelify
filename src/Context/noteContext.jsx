@@ -21,7 +21,7 @@ export const NoteProvider = ({children}) => {
         favorite: false,
     });
     const [showNoteEditor, setShowNoteEditor] = useState(false);
-    const [noteId, setNoteId] = useState(null);
+    const [noteId, setNoteId] = useState("");
     const [showSideBar, setShowSideBar] = useState(false);
     const [searchQuery, setSearchQuery] = useState("")
 
@@ -34,14 +34,17 @@ export const NoteProvider = ({children}) => {
             title,
             body
         }))
-        setShowNoteEditor(true);
+        console.log(title, body, currentId)
         setNoteId(currentId);
+        setShowNoteEditor(true);
+        // console.log(noteTexts)
+        // console.log(noteId)
     }
 
     //closing/exiting the note editor;
     function closeNoteEditor(){
         setShowNoteEditor(false);
-        setNoteId(null);
+        setNoteId("");
     }
 
     //when you want to create a new note
@@ -52,6 +55,7 @@ export const NoteProvider = ({children}) => {
             body,
             favorite
         }))
+        console.log(noteTexts)
         setShowNoteEditor(true)
     }
 
@@ -61,6 +65,7 @@ export const NoteProvider = ({children}) => {
             ...prev,
             [name]: value
         }))
+        console.log(noteTexts)
     }
 
     //creating/adding a new note
@@ -68,7 +73,14 @@ export const NoteProvider = ({children}) => {
         await addDoc(collectionRef, {...noteTexts, author: {id: auth.currentUser.uid}, createdAt: serverTimestamp()} )
         .then(() => {
             setShowNoteEditor(false);
+            setNoteTexts({
+                title: "",
+                body: "",
+                favorite: false
+            })
+            console.log(noteTexts)
         }).catch(error => console.log(error.message))
+
     }
 
     //saving changes to already existing notes
@@ -79,6 +91,7 @@ export const NoteProvider = ({children}) => {
             setNoteId(null)
             setShowNoteEditor(false);
         }).catch(error => console.log(error.message));
+        console.log(noteId, noteTexts)
     }
 
     //adding note to favorite
@@ -99,11 +112,12 @@ export const NoteProvider = ({children}) => {
 
     //deleting note
     const  deleteNote = async (id) => {
+        console.log(id)
         const noteToDelete = doc(db, "notes", id)
         await deleteDoc(noteToDelete)
         .then(() => {
             setShowNoteEditor(false);
-            setNoteId(null)
+            setNoteId("")
         }).catch(err => console.log(err.message))
     }
 
